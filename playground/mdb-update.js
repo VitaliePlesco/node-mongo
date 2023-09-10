@@ -10,13 +10,28 @@ async function main() {
   console.log("Connected successfully");
   const db = client.db(dbName);
   // const todos = await db.collection("Todos").countDocuments();
-  const res = await db
-    .collection("Users")
-    .findOneAndDelete({ _id: new O("64fdfb7f9e23edaddad762f6") });
-  // const res = await db.collection("Todos").deleteOne({ text: "Eat lunch" });
-  // const res = await db
-  //   .collection("Todos")
-  //   .findOneAndDelete({ completed: false });
+
+  // const res = await db.collection("Todos").findOneAndUpdate(
+  //   { _id: new ObjectId("64fdc96d0f00d7d17f49b42e") },
+  //   {
+  //     $set: {
+  //       completed: true,
+  //     },
+  //   },
+  //   { returnDocument: "after" }
+  // );
+  const res = await db.collection("Users").findOneAndUpdate(
+    { _id: new ObjectId("64fe031d0f00d7d17f49b443") },
+    {
+      $set: {
+        name: "Vitalie",
+      },
+      $inc: {
+        age: 1,
+      },
+    },
+    { returnDocument: "after" }
+  );
 
   console.log(res);
   return console.log("done.");
