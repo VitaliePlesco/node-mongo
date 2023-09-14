@@ -24,7 +24,6 @@ app.post("/todos", (req, res) => {
     }
   };
   saveTodo();
-  console.log(req.body);
 });
 
 app.get("/todos", (req, res) => {
