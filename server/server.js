@@ -15,14 +15,6 @@ app.post("/todos", (req, res) => {
     text: req.body.text,
   });
 
-  // todo.save().then(
-  //   (doc) => {
-  //     res.send(doc);
-  //   },
-  //   (e) => {
-  //     res.status(400).send(e);
-  //   }
-  // );
   const saveTodo = async () => {
     try {
       const result = await todo.save();
@@ -33,6 +25,26 @@ app.post("/todos", (req, res) => {
   };
   saveTodo();
   console.log(req.body);
+});
+
+app.get("/todos", (req, res) => {
+  // Todo.find({}).then(
+  //   (todos) => {
+  //     res.send({ todos });
+  //   },
+  //   (error) => {
+  //     res.status(400).send(error);
+  //   }
+  // );
+  const findTodos = async () => {
+    try {
+      const result = await Todo.find();
+      res.send(result);
+    } catch (error) {
+      res.status(400).send(error);
+    }
+  };
+  findTodos();
 });
 
 app.listen(port, () => {
